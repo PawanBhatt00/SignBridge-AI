@@ -1,0 +1,8 @@
+{
+  "labels": [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M",
+    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"
+  ],
+  "description": "ASL static alphabet labels (excluding J and Z which involve motion)",
+  "version": "1.0.0"
+}

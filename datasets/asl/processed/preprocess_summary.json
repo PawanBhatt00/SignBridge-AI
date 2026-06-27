@@ -1,0 +1,40 @@
+{
+  "total_samples": 5978,
+  "feature_shape": [
+    5978,
+    63
+  ],
+  "per_label_counts": {
+    "A": 565,
+    "B": 565,
+    "C": 202,
+    "D": 202,
+    "E": 202,
+    "F": 202,
+    "G": 202,
+    "H": 202,
+    "I": 202,
+    "J": 202,
+    "K": 202,
+    "L": 202,
+    "M": 202,
+    "N": 202,
+    "O": 202,
+    "P": 202,
+    "Q": 202,
+    "R": 202,
+    "S": 202,
+    "T": 202,
+    "U": 202,
+    "V": 202,
+    "W": 202,
+    "X": 202,
+    "Y": 202,
+    "Z": 202
+  },
+  "outputs": {
+    "samples_json": "/home/pawan/Projects/Sign-Language_translation/signbridge/datasets/asl/processed/samples.json",
+    "features_npz": "/home/pawan/Projects/Sign-Language_translation/signbridge/datasets/asl/processed/features.npz",
+    "dataset_info": "/home/pawan/Projects/Sign-Language_translation/signbridge/datasets/asl/processed/dataset_info.json"
+  }
+}

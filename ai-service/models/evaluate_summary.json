@@ -1,0 +1,216 @@
+{
+  "total_samples": 5978,
+  "accuracy": 0.7188,
+  "acceptance_rate": 0.7213,
+  "confidence_threshold": 0.7,
+  "per_label": {
+    "A": {
+      "total": 565,
+      "correct": 83,
+      "accepted": 83
+    },
+    "B": {
+      "total": 565,
+      "correct": 82,
+      "accepted": 83
+    },
+    "C": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "D": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "E": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "F": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "G": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "H": {
+      "total": 202,
+      "correct": 148,
+      "accepted": 148
+    },
+    "I": {
+      "total": 202,
+      "correct": 7,
+      "accepted": 10
+    },
+    "J": {
+      "total": 202,
+      "correct": 30,
+      "accepted": 30
+    },
+    "K": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "L": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "M": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "N": {
+      "total": 202,
+      "correct": 200,
+      "accepted": 200
+    },
+    "O": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "P": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "Q": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "R": {
+      "total": 202,
+      "correct": 130,
+      "accepted": 133
+    },
+    "S": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "T": {
+      "total": 202,
+      "correct": 200,
+      "accepted": 200
+    },
+    "U": {
+      "total": 202,
+      "correct": 62,
+      "accepted": 68
+    },
+    "V": {
+      "total": 202,
+      "correct": 156,
+      "accepted": 157
+    },
+    "W": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "X": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "Y": {
+      "total": 202,
+      "correct": 202,
+      "accepted": 202
+    },
+    "Z": {
+      "total": 202,
+      "correct": 169,
+      "accepted": 170
+    }
+  },
+  "misclassifications_sample": [
+    {
+      "true": "B",
+      "pred": "A",
+      "confidence": 0.7023
+    },
+    {
+      "true": "I",
+      "pred": "J",
+      "confidence": 0.7046
+    },
+    {
+      "true": "I",
+      "pred": "J",
+      "confidence": 0.7315
+    },
+    {
+      "true": "I",
+      "pred": "J",
+      "confidence": 0.7403
+    },
+    {
+      "true": "R",
+      "pred": "Z",
+      "confidence": 0.811
+    },
+    {
+      "true": "R",
+      "pred": "Z",
+      "confidence": 0.7528
+    },
+    {
+      "true": "R",
+      "pred": "Z",
+      "confidence": 0.7276
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.849
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.7374
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.8039
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.7875
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.8062
+    },
+    {
+      "true": "U",
+      "pred": "V",
+      "confidence": 0.8985
+    },
+    {
+      "true": "V",
+      "pred": "U",
+      "confidence": 0.8097
+    },
+    {
+      "true": "Z",
+      "pred": "R",
+      "confidence": 0.7305
+    }
+  ],
+  "backend": "numpy"
+}

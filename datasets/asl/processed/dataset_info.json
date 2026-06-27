@@ -1,0 +1,43 @@
+{
+  "name": "SignBridge ASL Alphabet",
+  "version": "1.1.0",
+  "labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ],
+  "landmarks_per_hand": 21,
+  "feature_size": 63,
+  "normalization": "wrist-relative, max-abs scaling",
+  "notes": "A-Z static poses with anatomical templates; J/Z use static snapshots.",
+  "sources": [
+    "datasets/asl/raw",
+    "datasets/processed/samples.json",
+    "training/asl_poses.py"
+  ],
+  "repo_root": "/home/pawan/Projects/Sign-Language_translation/signbridge",
+  "training_standardization": "z-score (stored in model)"
+}
