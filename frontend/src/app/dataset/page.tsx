@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Database, Upload } from "lucide-react";
+import { CheckCircle2, Database, Upload } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,7 +22,7 @@ export default function DatasetPage() {
   const [isCapturing, setIsCapturing] = useState(false);
   const { webcamRef, landmarks, scriptLoaded } = useHandLandmarks(isCapturing);
 
-  const { data: stats, isLoading } = useQuery({
+  const { data: stats, isLoading, isError: statsError } = useQuery({
     queryKey: ["dataset-stats"],
     queryFn: () => api.getDatasetStats(accessToken!),
     enabled: !!accessToken,
@@ -40,12 +40,13 @@ export default function DatasetPage() {
     },
   });
 
-  const maxCount = stats?.labelCounts.reduce((max, item) => Math.max(max, item.count), 0) ?? 1;
+  const maxCount =
+    stats?.labelCounts.reduce((max, item) => Math.max(max, item.count), 0) ?? 1;
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold flex items-center gap-2">
+        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
           <Database className="h-8 w-8 text-primary" />
           Dataset Management
         </h1>
@@ -55,6 +56,7 @@ export default function DatasetPage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
+        {/* Capture panel */}
         <Card>
           <CardHeader>
             <CardTitle>Capture Sample</CardTitle>
@@ -62,7 +64,7 @@ export default function DatasetPage() {
               Select a label, start the camera, and upload when your hand is detected
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="label">ASL Label</Label>
               <div className="flex flex-wrap gap-2">
@@ -71,9 +73,9 @@ export default function DatasetPage() {
                     key={letter}
                     type="button"
                     onClick={() => setLabel(letter)}
-                    className={`w-9 h-9 rounded-lg font-mono font-bold text-sm transition-colors ${
+                    className={`w-9 h-9 rounded-lg font-mono font-bold text-sm transition-all ${
                       label === letter
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-primary text-primary-foreground scale-105 shadow-sm"
                         : "bg-secondary hover:bg-secondary/80"
                     }`}
                     aria-pressed={label === letter}
@@ -99,7 +101,7 @@ export default function DatasetPage() {
               {isCapturing ? "Stop Camera" : "Start Camera"}
             </Button>
 
-            <div className="relative aspect-video rounded-lg overflow-hidden bg-black/50">
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-black/50 ring-1 ring-border">
               {isCapturing ? (
                 <Webcam
                   ref={webcamRef}
@@ -109,13 +111,21 @@ export default function DatasetPage() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground">
-                  Camera off
+                <div className="flex flex-col items-center justify-center h-full text-muted-foreground gap-1">
+                  <Database className="h-6 w-6 opacity-40" />
+                  <span className="text-sm">Camera off</span>
                 </div>
               )}
-              {landmarks && isCapturing && (
-                <div className="absolute top-2 right-2 px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs">
-                  Hand detected
+
+              {isCapturing && (
+                <div
+                  className={`absolute top-2 right-2 px-2 py-1 rounded text-xs font-medium transition-colors ${
+                    landmarks
+                      ? "bg-emerald-500/20 text-emerald-400"
+                      : "bg-amber-500/20 text-amber-400"
+                  }`}
+                >
+                  {landmarks ? "Hand detected" : "No hand in frame"}
                 </div>
               )}
             </div>
@@ -132,6 +142,13 @@ export default function DatasetPage() {
               </p>
             )}
 
+            {uploadMutation.isSuccess && !uploadMutation.isPending && (
+              <p className="text-sm text-emerald-500 flex items-center gap-1.5" role="status">
+                <CheckCircle2 className="h-4 w-4" />
+                Sample saved for "{label}"
+              </p>
+            )}
+
             <Button
               onClick={() => uploadMutation.mutate()}
               disabled={!landmarks || uploadMutation.isPending}
@@ -143,6 +160,7 @@ export default function DatasetPage() {
           </CardContent>
         </Card>
 
+        {/* Stats panel */}
         <Card>
           <CardHeader>
             <CardTitle>Dataset Statistics</CardTitle>
@@ -150,16 +168,41 @@ export default function DatasetPage() {
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <p className="text-muted-foreground">Loading statistics...</p>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {Array.from({ length: 2 }).map((_, i) => (
+                    <div key={i} className="glass-card text-center">
+                      <div className="h-7 w-12 mx-auto rounded bg-muted animate-pulse" />
+                      <div className="h-4 w-20 mx-auto mt-2 rounded bg-muted animate-pulse" />
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-3">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="space-y-2">
+                      <div className="h-4 w-full rounded bg-muted animate-pulse" />
+                      <div className="h-2 w-full rounded bg-muted animate-pulse" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : statsError ? (
+              <p className="text-sm text-destructive" role="alert">
+                Unable to load statistics. Try refreshing the page.
+              </p>
             ) : stats ? (
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="glass-card text-center">
-                    <p className="text-2xl font-bold">{stats.totalSamples}</p>
+                    <p className="text-2xl font-bold tabular-nums">
+                      {stats.totalSamples.toLocaleString()}
+                    </p>
                     <p className="text-sm text-muted-foreground">Total Samples</p>
                   </div>
                   <div className="glass-card text-center">
-                    <p className="text-2xl font-bold">{stats.uniqueLabels}</p>
+                    <p className="text-2xl font-bold tabular-nums">
+                      {stats.uniqueLabels}
+                    </p>
                     <p className="text-sm text-muted-foreground">Unique Labels</p>
                   </div>
                 </div>
@@ -168,21 +211,25 @@ export default function DatasetPage() {
                   <div className="space-y-3">
                     {stats.labelCounts.map((item) => (
                       <div key={item.label}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="font-mono font-bold">{item.label}</span>
-                          <span className="text-muted-foreground">{item.count}</span>
+                        <div className="flex justify-between text-sm mb-1.5">
+                          <span className="font-mono font-semibold">{item.label}</span>
+                          <span className="text-muted-foreground tabular-nums">
+                            {item.count}
+                          </span>
                         </div>
                         <Progress value={(item.count / maxCount) * 100} />
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-muted-foreground">No samples yet. Capture your first one!</p>
+                  <div className="text-center py-6">
+                    <p className="text-muted-foreground">
+                      No samples yet — capture your first one to get started.
+                    </p>
+                  </div>
                 )}
               </div>
-            ) : (
-              <p className="text-muted-foreground">Unable to load statistics.</p>
-            )}
+            ) : null}
           </CardContent>
         </Card>
       </div>
