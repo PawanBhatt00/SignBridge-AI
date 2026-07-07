@@ -1,0 +1,31 @@
+# Datasets
+datasets/raw/
+datasets/asl/processed/
+datasets/asl/raw/
+
+# Models
+models/*.keras
+models/*.npz
+!models/.gitkeep
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Build
+dist/
+.next/
+coverage/
+
+# Logs
+*.log
+
+.DS_Store

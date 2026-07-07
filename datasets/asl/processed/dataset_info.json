@@ -1,6 +1,6 @@
 {
   "name": "SignBridge ASL Alphabet",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "labels": [
     "A",
     "B",
@@ -32,11 +32,9 @@
   "landmarks_per_hand": 21,
   "feature_size": 63,
   "normalization": "wrist-relative, max-abs scaling",
-  "notes": "A-Z static poses with anatomical templates; J/Z use static snapshots.",
+  "notes": "MediaPipe landmarks extracted from Kaggle ASL Alphabet dataset.",
   "sources": [
-    "datasets/asl/raw",
-    "datasets/processed/samples.json",
-    "training/asl_poses.py"
+    "/home/pawan/Projects/Sign-Language_translation/signbridge/datasets/raw/asl_alphabet_train/asl_alphabet_train"
   ],
   "repo_root": "/home/pawan/Projects/Sign-Language_translation/signbridge",
   "training_standardization": "z-score (stored in model)"

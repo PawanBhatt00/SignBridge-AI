@@ -1,6 +1,7 @@
 {
-  "training_samples": 5081,
-  "validation_samples": 897,
+  "training_samples": 102695,
+  "validation_samples": 18123,
+  "classes": 26,
   "labels": [
     "A",
     "B",
@@ -29,12 +30,12 @@
     "Y",
     "Z"
   ],
-  "train_accuracy": 0.894,
-  "val_accuracy": 0.845,
-  "backend": "numpy",
-  "keras_saved": false,
-  "numpy_model": "/home/pawan/Projects/Sign-Language_translation/signbridge/ai-service/models/asl_classifier.npz",
-  "labels_json": "/home/pawan/Projects/Sign-Language_translation/signbridge/ai-service/models/labels.json",
-  "architecture": "mlp_v1",
-  "confidence_threshold": 0.7
+  "train_accuracy": 0.9938,
+  "validation_accuracy": 0.9917,
+  "best_validation_accuracy": 0.9917,
+  "keras_saved": true,
+  "architecture": "MLP (63 -> 128 -> 26)",
+  "epochs": 400,
+  "batch_size": 512,
+  "learning_rate": 0.08
 }

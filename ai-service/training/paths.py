@@ -6,7 +6,15 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATASETS_ASL = REPO_ROOT / "datasets" / "asl"
-RAW_DIR = DATASETS_ASL / "raw"
+
+# Use the Kaggle ASL Alphabet dataset
+RAW_DIR = (
+    REPO_ROOT
+    / "datasets"
+    / "raw"
+    / "asl_alphabet_train"
+    / "asl_alphabet_train"
+)
 PROCESSED_DIR = DATASETS_ASL / "processed"
 LEGACY_SAMPLES = REPO_ROOT / "datasets" / "processed" / "samples.json"
 DATASET_INFO = PROCESSED_DIR / "dataset_info.json"
