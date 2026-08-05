@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-console.log("JWT secret loaded:", !!config.jwt?.accessSecret);
 // should print: JWT secret loaded: true
 // if it prints false, share your config.ts next
 import cookieParser from "cookie-parser";
