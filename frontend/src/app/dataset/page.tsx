@@ -145,7 +145,7 @@ export default function DatasetPage() {
             {uploadMutation.isSuccess && !uploadMutation.isPending && (
               <p className="text-sm text-emerald-500 flex items-center gap-1.5" role="status">
                 <CheckCircle2 className="h-4 w-4" />
-                Sample saved for "{label}"
+                Sample saved for <strong>{label}</strong>
               </p>
             )}
 
